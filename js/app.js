@@ -41,7 +41,7 @@ const addToCart = (id, price) => {
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
 
@@ -50,12 +50,12 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = total;
+  document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = value;
+  document.getElementById(id).innerText = value.toFixed(2);
 };
 
 // update delivery charge and total Tax
@@ -77,9 +77,15 @@ const updateTaxAndCharge = () => {
 
 //grandTotal update function
 const updateTotal = () => {
-  const grandTotal =
+  console.log(
+    getInputValue('price') +
+      getInputValue('delivery-charge') +
+      getInputValue('total-tax')
+  );
+  const Total =
     getInputValue('price') +
     getInputValue('delivery-charge') +
     getInputValue('total-tax');
+  grandTotal = Total.toFixed(2);
   document.getElementById('total').innerText = grandTotal;
 };
